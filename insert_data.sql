@@ -80,4 +80,3 @@ INSERT INTO Question_choices
 		(4,'None'),
 		(5,'t'),
 		(5,'f')
-		
