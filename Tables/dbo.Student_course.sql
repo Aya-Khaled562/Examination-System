@@ -6,3 +6,11 @@
 )
 ON [PRIMARY]
 GO
+
+ALTER TABLE [dbo].[Student_course]
+  ADD CONSTRAINT [FK_Student_course_Course] FOREIGN KEY ([course_id]) REFERENCES [dbo].[Course] ([courses_id])
+GO
+
+ALTER TABLE [dbo].[Student_course]
+  ADD CONSTRAINT [FK_Student_course_Student] FOREIGN KEY ([st_id]) REFERENCES [dbo].[Student] ([st_id])
+GO
