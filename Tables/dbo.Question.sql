@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Question] (
   [q_id] [int] IDENTITY,
-  [question] [varchar](50) NULL,
+  [question] [varchar](200) NULL,
   [q_type] [varchar](50) NULL,
   [q_grade] [int] NULL,
   [q_answer] [varchar](10) NULL,

@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Question_choices] (
-  [q_id] [int] IDENTITY,
+  [q_id] [int] NOT NULL,
   [choices] [varchar](50) NOT NULL,
   CONSTRAINT [PK_Question_choices_1] PRIMARY KEY CLUSTERED ([q_id], [choices])
 )
