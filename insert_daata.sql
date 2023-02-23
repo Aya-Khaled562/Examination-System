@@ -7,13 +7,13 @@ INSERT INTO Student ([fname]
       ,[dept_id]
       ,[city]
       ,[street])
-       VALUES('Ahmed','elemam','m','01027219250','1999-02-13','2020-02-23',1,'cairo','giza'),
-	         ('Ali','ali','m','01023219250','1990-04-19','2022-06-1',2,'alex','khaledibnwalid'),
-			 ('Amged','mohamed','m','01027212250','1980-02-12','2015-05-30',3,'Tanta','elnahas'),
-			 ('Ayman','belal','m','01027219250','2000-03-15','2017-08-02',4,'cairo','giza'),
-			 ('Samir','Zakaria','m','01027213250','1993-04-14','2020-04-20',5,'cairo','giza'),
-			 ('Mohamed','Hany','m','01027219253','1992-08-09','2020-04-21',1,'cairo','giza'),
-			 ('Fares','Mohamed','m','01027219252','1995-02-05','2022-4-20',2,'cairo','giza')
+       VALUES('Ahmed','elemam','m','01027219250','1999-02-13','2020-02-23',2,'cairo','giza'),
+	         ('Ali','ali','m','01023219250','1990-04-19','2022-06-1',3,'alex','khaledibnwalid'),
+			 ('Amged','mohamed','m','01027212250','1980-02-12','2015-05-30',4,'Tanta','elnahas'),
+			 ('Ayman','belal','m','01027219250','2000-03-15','2017-08-02',5,'cairo','giza'),
+			 ('Samir','Zakaria','m','01027213250','1993-04-14','2020-04-20',6,'cairo','giza'),
+			 ('Mohamed','Hany','m','01027219253','1992-08-09','2020-04-21',2,'cairo','giza'),
+			 ('Fares','Mohamed','m','01027219252','1995-02-05','2022-4-20',3,'cairo','giza')
 
 INSERT INTO Department(dept_name,dept_manager)
 		VALUES ('SD',1),
@@ -47,11 +47,11 @@ INSERT INTO Topic
 				   ('Java')
 
 INSERT INTO Student_course
-			VALUES (2,2,100),
-			(2,6,50),
-			(3,3,90),
-			(4,4,80),
-			(5,5,60)
+			VALUES (2,3,100),
+			(2,4,50),
+			(3,5,90),
+			(4,6,80),
+			(5,7,60)
 
 INSERT INTO  instructor_courses
              VALUES(1,3),
@@ -70,19 +70,19 @@ INSERT INTO Question
 
 
 INSERT INTO Question_choices
-		VALUES(1,'object-oriented'),
-		(1,'object-based'),
-		(1,'Procedual'),
-		(2,'let'),
-		(2,'var'),
-		(2,'both a and b'),
-		(3,'No return type'),
-		(3,'A class object in which it'),
-		(3,'void'),
-		(3,'None'),
-		(4,'At run time'),
-		(4,'At compile time'),
-		(4,'Depends on the code'),
+		VALUES(2,'object-oriented'),
+		(2,'object-based'),
+		(2,'Procedual'),
+		(3,'let'),
+		(3,'var'),
+		(3,'both a and b'),
+		(4,'No return type'),
+		(4,'A class object in which it'),
+		(4,'void'),
 		(4,'None'),
-		(5,'t'),
-		(5,'f')
+		(5,'At run time'),
+		(5,'At compile time'),
+		(5,'Depends on the code'),
+		(5,'None'),
+		(6,'t'),
+		(6,'f')
