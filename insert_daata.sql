@@ -62,11 +62,11 @@ INSERT INTO  instructor_courses
 
 INSERT INTO Question
 			VALUES 
-			('Javascript is an _______ language?', 'choice', 2, 'a', 1),
-			('Which of the following keywords is used to define a variable in Javascript?', 'choice', 2, 'c', 1),
-			('What is the implicit return type of constructor?', 'choice', 2, 'b', 2),
-			('When is the object created with a new keyword?', 'choice', 2, 'a', 2),
-			('Binary search is always faster than linear search', 'tf', 2, 'f', 3)
+			('Javascript is an _______ language?', 'choice', 2, 'a', 2),
+			('Which of the following keywords is used to define a variable in Javascript?', 'choice', 2, 'c', 2),
+			('What is the implicit return type of constructor?', 'choice', 2, 'b', 3),
+			('When is the object created with a new keyword?', 'choice', 2, 'a', 3),
+			('Binary search is always faster than linear search', 'tf', 2, 'f', 4)
 
 
 INSERT INTO Question_choices
