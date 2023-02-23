@@ -29,6 +29,7 @@ INSERT INTO Course
 					('CSS',10,2),
 					('Nodejs',12,3),
 					('ASP.Net',3,3)
+SELECT IDENT_CURRENT('Course') AS StartValue;
 
 INSERT INTO Instructor([fname],[lname],[ins_phone],[dept_id],[city],[street])
 			VALUES ('Maha','Elgendy','01025689',NULL,'Tanta','Ebn Elfared'),
@@ -46,15 +47,15 @@ INSERT INTO Topic
 				   ('Java')
 
 INSERT INTO Student_course
-			VALUES (1,1,100),
-			(2,1,50),
-			(1,2,90),
-			(2,3,80),
-			(3,4,60)
+			VALUES (2,2,100),
+			(2,6,50),
+			(3,3,90),
+			(4,4,80),
+			(5,5,60)
 
 INSERT INTO  instructor_courses
              VALUES(1,3),
-			       (2,1),
+			       (2,6),
 				   (3,2),
 				   (4,5),
 				   (5,4)
