@@ -29,7 +29,8 @@ INSERT INTO Course
 					('CSS',10,2),
 					('Nodejs',12,3),
 					('ASP.Net',3,3)
-SELECT IDENT_CURRENT('Course') AS StartValue;
+
+--DBCC CHECKIDENT ('Instructor', RESEED, 6);
 
 INSERT INTO Instructor([fname],[lname],[ins_phone],[dept_id],[city],[street])
 			VALUES ('Maha','Elgendy','01025689',NULL,'Tanta','Ebn Elfared'),
