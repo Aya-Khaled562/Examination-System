@@ -40,7 +40,7 @@ instructor_course_insert_sp 2,3
 GO
 ---------------------------------------
 --Courses
-CREATE PROC insert_courese_sp   @courses_name VARCHAR(50), @courser_durtion INT ,@topic_id INT
+CREATE PROC insert_courese_sp  @courses_name VARCHAR(50), @courser_durtion INT ,@topic_id INT
 AS
 BEGIN
 IF @topic_id IN (SELECT t.topic_id FROM Topic t)
@@ -54,17 +54,18 @@ ELSE
 	 END
 END
 
+GO
 insert_courese_sp 'IOS',40,3
-
+Go
 ---------------------------------
 ---Student Courese
-CREATE PROC st_insert_pro @courese_id INT , @st_id INT ,@grade INT
+CREATE PROC student_Course_insert_sp @course_id INT , @st_id INT ,@grade INT
 AS
 BEGIN
-IF @courese_id IN (SELECT c.courses_id FROM Course c) AND @st_id IN (SELECT s.st_id FROM Student s)
+IF @course_id IN (SELECT c.courses_id FROM Course c) AND @st_id IN (SELECT s.st_id FROM Student s)
   BEGIN
     INSERT INTO Student_course
-	VALUES(@courese_id,@st_id,@grade)
+	VALUES(@course_id,@st_id,@grade)
   END
 ELSE
    BEGIN
@@ -72,4 +73,6 @@ ELSE
    END
 END
 
-st_insert_pro 3,3,50
+GO
+student_Course_insert_sp 3,2,50
+GO
