@@ -189,3 +189,39 @@ END
 GO
 
 qChoice_select_by_id 3
+
+
+----------------------------Student----------------------------
+CREATE PROC student_select_sp
+AS
+BEGIN
+	SELECT * FROM Student s
+END
+
+student_select_sp
+
+CREATE PROC student_select_by_id_sp  @st_id INT
+AS
+BEGIN
+	SELECT * FROM Student s WHERE s.st_id = @st_id
+END
+
+student_select_by_id_sp 5
+
+
+----------------------------Department---------------------------
+CREATE PROC department_select_sp
+AS
+BEGIN
+	SELECT * FROM Department d
+END
+
+department_select_sp
+
+CREATE PROC department_select_by_id_sp @dept_id INT
+AS
+BEGIN
+	SELECT * FROM Department d WHERE d.dept_id = @dept_id
+END
+
+department_select_by_id_sp 3

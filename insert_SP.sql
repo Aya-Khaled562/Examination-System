@@ -168,3 +168,41 @@ BEGIN
 END
 
 GO
+
+
+---------------------------Student--------------------------
+CREATE PROC student_insert_sp @fname VARCHAR(50) , @lname VARCHAR(50) ,@st_gender VARCHAR(3), @st_phone VARCHAR(11),
+@st_birthdate DATE , @st_joindate DATE ,@dept_id INT, @city VARCHAR(50),@street VARCHAR(50)
+AS 
+BEGIN
+	IF @dept_id  IN (SELECT dept_id FROM Department d)
+		BEGIN
+			INSERT INTO Student
+			VALUES (@fname,@lname,@st_gender,@st_phone,@st_birthdate,@st_joindate,@dept_id,@city,@street)
+		END
+	ELSE
+		BEGIN
+			PRINT 'department_id you try to enter is not exist'
+		END
+END
+
+GO
+student_insert_sp  'Zyad','Ali','m','01027219252','1999-03-10','2022-4-10',4,'cairo','giza'
+
+----------------------------Department-------------------------
+CREATE PROC department_insert_sp @dept_name VARCHAR(50),@dept_manager INT
+AS
+BEGIN
+	IF @dept_manager IN (SELECT insrt_id FROM Instructor i)
+		BEGIN
+			INSERT INTO Department
+			VALUES (@dept_manager , @dept_name)
+		END
+	ELSE
+		BEGIN
+			PRINT 'Department_manager id that you try to enter is not exist '
+		END
+END
+GO
+department_insert_sp 'test',2
+
