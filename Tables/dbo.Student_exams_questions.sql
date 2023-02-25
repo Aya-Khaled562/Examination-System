@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[Student_exams_questions] (
-  [st_id] [int] IDENTITY,
+  [st_id] [int] NOT NULL,
   [exam_id] [int] NOT NULL,
   [qs_id] [int] NOT NULL,
   [grade] [int] NULL,
   [answer] [varchar](10) NULL,
-  [correct_answer] [varchar](10) NULL,
+  [is_corrected] [int] NULL CONSTRAINT [DF_Student_exams_questions_is_corrected] DEFAULT (0),
   CONSTRAINT [PK_Student_exams_questions] PRIMARY KEY CLUSTERED ([st_id], [exam_id], [qs_id])
 )
 ON [PRIMARY]
