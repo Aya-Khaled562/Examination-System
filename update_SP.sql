@@ -34,8 +34,7 @@ as
 GO
 instructor_course_update_sp 1,2
 GO
--------------------------------------------------------------------------------
------Courses
+----------------------------------- Courses--------------------------------------------
 create  proc course_update_sp @crs_id int, @crs_name nvarchar(50), @crs_duration int 
 as
 begin
@@ -59,9 +58,8 @@ begin
 			where courses_id=@crs_id and course_name = @crs_name
 		END
 END
-
--------------------
-----Student Courese
+ GO
+----------------------------------------Student Courese-------------------
 CREATE PROC student_course_update_sp @std_id INT, @crs_id INT, @grade INT
 AS
 BEGIN
@@ -84,4 +82,107 @@ BEGIN
 			end
 		else
 		print 'Student does not exist'
-end
+END
+
+GO
+----------------------------------------------------- EXAM ---------------------------
+CREATE PROCEDURE exam_update @exam_id INT , @exam_date DATE
+AS 
+BEGIN
+	IF @exam_id IN (SELECT @exam_id FROM Exam e )
+		BEGIN
+			UPDATE Exam
+			SET @exam_date =@exam_date
+			WHERE exam_id = @exam_id
+		END
+	ELSE
+		BEGIN
+			PRINT 'this exam is not exist'
+		END
+END
+
+GO
+-------------------------------student_exams_Questions-----------------------
+CREATE PROCEDURE st_ex_qs_update @st_id INT , @ex_id INT ,@qs_id INT, @grade INT,@answer VARCHAR(10),@is_corrected INT 
+AS
+BEGIN
+	IF 
+		(@st_id IN (SELECT st_id FROM Student)) 
+		AND 
+		(@ex_id IN (SELECT exam_id FROM Exam ))
+		AND 
+		(@qs_id IN (SELECT q_id FROM Question ))
+		BEGIN
+			IF @st_id IN (SELECT st_id FROM  Student_exams_questions 
+			WHERE st_id =@st_id AND exam_id = @ex_id AND qs_id = @qs_id )
+				BEGIN
+					UPDATE  student_exams_Questions
+					SET grade =@grade , answer = @answer , is_corrected = @is_corrected
+				END
+			ELSE
+			BEGIN
+				PRINT 'dublicated student_id , exam_id and qs_id'
+			END
+		END
+	ELSE 
+		BEGIN
+			PRINT 'this student_Exam_question not exist'
+		END
+END
+GO
+-----------------------topic---------------------------
+CREATE PROCEDURE topic_update @topic_id INT , @topic_name VARCHAR(50)
+AS 
+BEGIN
+	IF @topic_id IN (SELECT topic_id FROM Topic )
+		BEGIN
+			UPDATE Topic
+			SET topic_name =@topic_name
+			WHERE topic_id = @topic_id
+		END
+	ELSE
+		BEGIN
+			PRINT 'this topic is not exist'
+		END
+
+END
+
+GO
+------------------------------------Questions-----------
+CREATE PROCEDURE quetion_update @q_id INT, @question VARCHAR(50), @q_type VARCHAR(10), @grade INT, @answer VARCHAR(3), @c_id INT
+AS 
+BEGIN
+	IF @q_id IN (SELECT q_id FROM Question) AND @c_id IN (SELECT courses_id FROM Course)
+		BEGIN
+			UPDATE Question 
+			SET question = @question, q_type = @q_type, q_grade = @grade, q_answer = @answer 
+			WHERE q_id = @q_id AND courses_id = @c_id 
+		END
+	ELSE
+		BEGIN
+			PRINT('Selected id not exist, check question id and course id')
+		END
+END
+
+GO
+quetion_update 7,'Identify the scope resolution operator.','choice',2,'b',2
+GO
+--------------------------- Question_Choices ----------------
+CREATE PROCEDURE choice_update @q_id INT, @old_choice VARCHAR(30), @new_choice VARCHAR(30)
+AS 
+BEGIN
+	IF @q_id IN (SELECT q_id FROM Question_choices) AND @old_choice IN (SELECT choices FROM Question_choices)
+		BEGIN
+			UPDATE Question_choices
+			SET choices = @new_choice 
+			WHERE choices = @old_choice AND q_id = @q_id 
+		END 
+	ELSE
+		BEGIN
+			PRINT('Selected id not exist, check question id and old choice value')
+		END
+END
+
+GO
+choice_update 7, ':', '...'
+GO
