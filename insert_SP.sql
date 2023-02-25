@@ -1,4 +1,4 @@
----- instructor --
+---- instructor --------------------
 CREATE PROCEDURE instructor_insert_sp  @ins_fname NVARCHAR(50),@ins_lname NVARCHAR(50),@dept_id INT
 AS 
 BEGIN
@@ -168,7 +168,3 @@ BEGIN
 END
 
 GO
-insert_choices 6, ':'
-insert_choices 6, '::'
-insert_choices 6, '?:'
-insert_choices 6, 'None'
