@@ -1,8 +1,4 @@
 
-SELECT t.topic_name
-FROM Course c, Topic t
-WHERE c.topic_id = t.topic_id
-
 CREATE PROC get_topic_name_sp @course_id VARCHAR(50)
 AS 
 BEGIN
