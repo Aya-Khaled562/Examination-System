@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <!-- ****************** vendore links ****************** -->
+  <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico" />
+  <!-- bootstrap  -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- ****************** Own links ****************** -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/login.css" />
+</head>
+<body>
+  <section class="register-section mt-1">
+    <div class="container">
+      <div class="row">
+        <div class="inner d-flex justify-content-center">
+          <div class="img col-xl-7 col-md-6 d-none d-md-block h-100">
+            <img src="../images/login.jpg" class="img-fluid h-100" alt="image login" />
+          </div>
+          <div class="register-info col-xl-5 col-md-6 col-12 p-5">
+            <form action="" method="post" class="mt-md-5">
+              <div class="title d-flex justify-content-center">
+                <hr class="w-25 mx-3 fw-bold" />
+                <h3 class="text-center mb-5">Register</h3>
+                <hr class="w-25 mx-3 fw-bold" />
+              </div>
+              <div class="firstName mb-4">
+                <input type="text" maxlength="20" placeholder="First Name" id="first" class="w-100 p-1 rounded-0" />
+                <div>
+                  <small class="text-danger" id="smallfirst">Please, Enter a vaild Name</small>
+                </div>
+              </div>
+              <div class="lastName mb-4">
+                <input type="text" maxlength="20" placeholder="Last Name" id="last" class="w-100 p-1 rounded-0" />
+                <div>
+                  <small class="text-danger" id="smalllast">Please, Enter a vaild Name</small>
+                </div>
+              </div>
+              <div class="email mb-4">
+                <input type="email" placeholder="Email Address" id="email" class="w-100 p-1 rounded-0" />
+                <div>
+                  <small class="text-danger" id="smallemail">Please, Enter a vaild email</small>
+                </div>
+              </div>
+              <div class="age mb-4">
+                <input type="number" min="22" max="60" placeholder="Age" id="age" class="w-100 p-1 rounded-0" />
+                <div>
+                  <small class="text-danger" id="smallage">Please, Enter a vaild Age</small>
+                </div>
+              </div>
+              <div class="address mb-4">
+                <input type="text" maxlength="50" placeholder="Address" id="address" class="w-100 p-1 rounded-0" />
+                <div>
+                  <small class="text-danger" id="smalladdress">Please, Enter a vaild Age</small>
+                </div>
+              </div>
+              <div class="register-button mt-5">
+                <!-- <input type="submit" class="btn text-center text-white rounded-1 py-2 w-100" id="registerbutton" /> -->
+                <a href="#" class="btn text-center text-white rounded-1 py-2 w-100" id="registerbutton">Submit</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="logout">
+        <ul class="list-unstyled ">
+          <li><a href="../index.html" class="">Leave site</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <script src="../js/register.js"></script>
+</body>
+</html>

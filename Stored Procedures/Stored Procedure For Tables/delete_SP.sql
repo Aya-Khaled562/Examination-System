@@ -1,5 +1,5 @@
 -- Instructor --
-CREATE PROCEDURE instructor_delete_sp @Ins_ID VARCHAR(50)
+CREATE PROCEDURE instructor_delete_sp @Ins_ID varchar(50)
 AS
 	BEGIN
 	DELETE FROM Instructor WHERE insrt_id = @Ins_ID
@@ -48,35 +48,7 @@ BEGIN
    DELETE FROM Student_course WHERE course_id = @crs_id
 END
 
------------------------Exam ---------
-CREATE PROCEDURE delete_exam_by_id @exam_id INT
-AS 
-BEGIN 
-	DELETE FROM Exam WHERE exam_id = @exam_id
-END
-EXECUTE delete_exam_by_id 1
-
--------------student_exams_Questions -----------------
-
-CREATE PROCEDURE delete_student_exams_Questions_by_id @st_id INT , @exam_id INT , @qs_id INT
-AS
-BEGIN
-	DELETE FROM student_exams_Questions WHERE st_id =@st_id AND exam_id = @exam_id AND qs_id =@qs_id  
-END
-
-EXECUTE delete_student_exams_Questions_by_id 1, 1, 1 
-
---------------Topic  -------------------
-CREATE PROCEDURE delete_topic_by_id @topic_id INT
-AS 
-BEGIN
-	DELETE FROM Topic WHERE topic_id = @topic_id
-END
-
-EXECUTE delete_topic_by_id 15
- 
---------------------Question -----------------
-
+-----Mayar-----
 CREATE PROCEDURE question_delete_by_id @q_id INT
 AS 
 BEGIN 
@@ -86,26 +58,28 @@ BEGIN
 		END
 	ELSE 
 		BEGIN
-			PRINT('The Id inserted isnt exist')
+			PRINT('The Id inserted isn't exist')
 		END
-END
+END 
 
 question_delete_by_id 10
 
------------------ Question Choices-----------------
 CREATE PROCEDURE choice_delete_by_id @q_id INT, @c_id INT 
 AS 
 BEGIN
-	IF @q_id IN (SELECT q_id FROM Question) AND @c_id IN (SELECT [choices] FROM Question_choices)
+	IF @q_id IN (SELECT q_id FROM Question) AND @c_id IN (SELECT choices Question_choices)
 		BEGIN
 			DELETE FROM Question_choices WHERE q_id=@q_id AND choices=@c_id
 		END
 	ELSE
 		BEGIN
-			PRINT('The Id inserted isnt exist')
+			PRINT('The Id inserted isn't exist')
 		END
-END
+END 
 
+<<<<<<< HEAD:delete_SP.sql
+choice_delete_by_id 10,50
+=======
 choice_delete_by_id 10,50 
 
 
@@ -134,3 +108,4 @@ END
 
 department_delete_sp 9
 
+>>>>>>> 2aae800c6a062ec8f60bff445117ffefd4aaa8c3:Stored Procedures/Stored Procedure For Tables/delete_SP.sql
