@@ -1,0 +1,36 @@
+.inner{
+  color: var(--grey);
+}
+.login .inner .img img,.register-section .inner .img img{
+  border-radius: 15px 0 0 15px;
+  -webkit-border-radius: 15px 0 0 15px;
+  -moz-border-radius: 15px 0 0 15px;
+  -ms-border-radius: 15px 0 0 15px;
+  -o-border-radius: 15px 0 0 15px;
+}
+.login .inner .login-info,.register-section .inner .register-info{
+  box-shadow: 1px 1px 2px var(--grey);
+  border-radius:0 15px 15px 0;
+  -webkit-border-radius:0 15px 15px 0;
+  -moz-border-radius:0 15px 15px 0;
+  -ms-border-radius:0 15px 15px 0;
+  -o-border-radius:0 15px 15px 0;
+}
+.login .inner .login-info input,.register-section .inner .register-info input{
+  border: 1px solid var(--grey);
+}
+.login .inner .login-info input:focus,.register-section .inner .register-info input:focus{
+  outline: none;
+  border: 1px solid var(--main);
+}
+.login .inner .login-info small,.register-section .inner .register-info small{
+  display: none;
+} 
+.login .inner .login-button a,.register-section .inner .register-button a{
+  border: 1px solid var(--main);
+  background-color: var(--main);
+}
+.login .inner .login-button a:hover,.register-section .inner .register-button a:hover{
+  background-color: var(--hover);
+}
+

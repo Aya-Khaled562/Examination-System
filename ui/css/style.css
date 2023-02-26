@@ -1,0 +1,72 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --main: #00abe4;
+  --hover: #0295c7;
+  --secondary: #e9f1fb;
+  --title: #173053;
+  --sub-title: #d5def6;
+  --grey: #a4a4a4;
+  --light: #eae7e7;
+}
+/* start framework */
+a {
+  color: var(--main);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--hover);
+}
+input[type="checkbox"] {
+  accent-color: var(--main);
+}
+hr{
+  color: var(--grey);
+}
+/* end framework */
+
+/* strat home style */
+#home {
+  background: rgb(0, 171, 228);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 171, 228, 1) 0%,
+    rgba(2, 149, 199, 1) 35%,
+    rgba(18, 18, 152, 1) 100%
+  );
+}
+
+.home h2 {
+  color: var(--light);
+  text-shadow: 2px 2px 3px var(--grey);
+}
+.home .buttons a {
+  border: 1px solid var(--main);
+  background-color: var(--main);
+}
+.home .buttons a:hover {
+  background-color: var(--hover);
+}
+/* end home style  */
+.logout {
+  text-align: right;
+  margin-top: 2rem;
+}
+.logout ul li a {
+  border: 1px solid var(--main);
+  padding: 0.5rem 1rem;
+  background-color: var(--main);
+  color: white;
+  border-radius: 0.2rem;
+  -webkit-border-radius: 0.2rem;
+  -moz-border-radius: 0.2rem;
+  -ms-border-radius: 0.2rem;
+  -o-border-radius: 0.2rem;
+}
+.logout ul li a:hover {
+  background-color: var(--hover);
+}
+/* end home style */
