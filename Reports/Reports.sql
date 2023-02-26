@@ -1,10 +1,11 @@
 
-CREATE PROC get_topic_name_sp @course_id VARCHAR(50)
+--Report 4
+CREATE PROC get_topic_name_sp @course_id INT
 AS 
 BEGIN
 	IF @course_id IN (SELECT c.courses_id FROM Course c)
 		BEGIN
-			SELECT t.topic_name
+			SELECT c.course_name,t.topic_name
 			FROM Course c, Topic t
 			WHERE c.topic_id = t.topic_id AND c.courses_id = @course_id
 		END
@@ -15,6 +16,7 @@ END
 
 get_topic_name_sp 3
 
+--Report 5
 CREATE PROC exam_qustions_choices @exam_id INT
 AS
 BEGIN
@@ -32,7 +34,7 @@ END
 
 exam_qustions_choices 1
 
-
+--Report 6
 CREATE PROC get_Question_with_Student_answer  @exam_id INT, @st_id INT
 AS
 BEGIN
@@ -40,7 +42,7 @@ BEGIN
 		BEGIN
 			IF @st_id IN (SELECT s.st_id FROM Student s)
 				BEGIN
-					SELECT q.question, seq.answer
+					SELECT q.question, seq.answer AS [Student answer] ,q.q_answer AS[Question answer]
 					FROM Student_exams_questions seq JOIN Question q
 					ON seq.qs_id = q.q_id
 					WHERE seq.exam_id = @exam_id AND seq.st_id = @st_id
