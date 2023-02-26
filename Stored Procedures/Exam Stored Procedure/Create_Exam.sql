@@ -44,7 +44,4 @@ BEGIN
 		PRINT 'This course is not Exist'
 
 END
-
-
-SELECT * from create_exam 'C++',1,2
-
+(excute create_exam 'C++',1,2)
