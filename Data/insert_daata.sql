@@ -87,3 +87,16 @@ INSERT INTO Question_choices
 		(5,'None'),
 		(6,'t'),
 		(6,'f')
+
+INSERT INTO Exam
+VALUES ('2022-1-20'),
+		('2022-2-10'),
+		('2022-3-15'),
+		('2022-5-22'),
+		('2022-6-18')
+
+
+INSERT INTO Student_exams_questions
+VALUES(5,1,3,2,'a',1),
+		(6,4,3,2,'b',0),
+		(7,5,4,2,'c',1)

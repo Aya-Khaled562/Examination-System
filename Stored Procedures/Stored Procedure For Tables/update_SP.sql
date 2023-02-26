@@ -121,4 +121,60 @@ BEGIN
 		END
 END
 
+<<<<<<< HEAD:update_SP.sql
 choice_update 7, ':', '...'
+=======
+GO
+choice_update 7, ':', '...'
+GO
+
+
+-------------------------Student---------------------------
+
+CREATE PROC student_update_sp  @st_id INT, @fname VARCHAR(50) , @lname VARCHAR(50) ,@st_gender VARCHAR(3), @st_phone VARCHAR(11),
+@st_birthdate DATE , @st_joindate DATE ,@dept_id INT, @city VARCHAR(50),@street VARCHAR(50)
+AS
+BEGIN
+	IF @dept_id IN (SELECT d.dept_id FROM Department d)
+		BEGIN
+			IF @st_id NOT IN (SELECT s.st_id FROM Student s)
+				BEGIN
+					INSERT INTO Student
+					VALUES (@fname,@lname,@st_gender,@st_phone,@st_birthdate,@st_joindate,@dept_id,@city,@street) 
+				END
+			ELSE
+				BEGIN
+					UPDATE Student
+					SET fname = @fname, lname=@lname, st_gender=@st_gender, st_phone=@st_phone,st_birthdate=@st_birthdate,
+						st_joindate= @st_joindate, dept_id = @dept_id, city=@city, street=@street
+					WHERE st_id = @st_id
+				END
+		END
+	ELSE
+		BEGIN
+			PRINT 'Department id that you enter is not exist'
+		END
+
+END
+
+student_update_sp 12,'Zyad','Ali','m','01027219252','1999-03-15','2022-4-10',6,'cairo','giza'
+
+--------------------------------Department---------------------
+CREATE PROC department_update_sp  @dept_id INT , @dept_name VARCHAR(50), @dept_manager INT
+AS
+BEGIN
+	IF @dept_id IN (SELECT dept_id FROM Department d)
+		BEGIN
+			UPDATE Department
+			SET dept_manager = @dept_manager,
+				dept_name = @dept_name
+			WHERE dept_id=@dept_id
+		END
+	ELSE
+		BEGIN
+			PRINT 'This Department id is not exist'
+		END
+END
+
+department_update_sp  9,'test2',3
+>>>>>>> 2aae800c6a062ec8f60bff445117ffefd4aaa8c3:Stored Procedures/Stored Procedure For Tables/update_SP.sql

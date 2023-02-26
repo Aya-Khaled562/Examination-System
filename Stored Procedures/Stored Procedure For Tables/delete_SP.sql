@@ -77,4 +77,35 @@ BEGIN
 		END
 END 
 
+<<<<<<< HEAD:delete_SP.sql
 choice_delete_by_id 10,50
+=======
+choice_delete_by_id 10,50 
+
+
+---------------------------Student-------------------------------
+CREATE PROC student_delete_sp @st_id INT
+AS
+BEGIN
+	IF @st_id IN (SELECT s.st_id FROM Student s)
+		DELETE FROM Student WHERE st_id = @st_id
+	ELSE
+		PRINT 'Student id that you enter is not exist'
+
+END
+
+student_delete_sp 12
+
+----------------------------Department--------------------------
+CREATE PROC department_delete_sp  @dept_id INT
+AS
+BEGIN
+	IF @dept_id IN (SELECT d.dept_id FROM Department d)
+		DELETE FROM Department WHERE dept_id = @dept_id
+	ELSE
+		PRINT 'Department id that you enter is not exist'
+END
+
+department_delete_sp 9
+
+>>>>>>> 2aae800c6a062ec8f60bff445117ffefd4aaa8c3:Stored Procedures/Stored Procedure For Tables/delete_SP.sql

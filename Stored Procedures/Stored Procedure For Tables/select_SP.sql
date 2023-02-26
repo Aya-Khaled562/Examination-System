@@ -113,4 +113,46 @@ BEGIN
 	SELECT * FROM Question_choices WHERE q_id = @q_id 
 END
 
+<<<<<<< HEAD:select_SP.sql
 qChoice_select_by_id 2
+=======
+GO
+
+qChoice_select_by_id 3
+
+
+----------------------------Student----------------------------
+CREATE PROC student_select_sp
+AS
+BEGIN
+	SELECT * FROM Student s
+END
+
+student_select_sp
+
+CREATE PROC student_select_by_id_sp  @st_id INT
+AS
+BEGIN
+	SELECT * FROM Student s WHERE s.st_id = @st_id
+END
+
+student_select_by_id_sp 5
+
+
+----------------------------Department---------------------------
+CREATE PROC department_select_sp
+AS
+BEGIN
+	SELECT * FROM Department d
+END
+
+department_select_sp
+
+CREATE PROC department_select_by_id_sp @dept_id INT
+AS
+BEGIN
+	SELECT * FROM Department d WHERE d.dept_id = @dept_id
+END
+
+department_select_by_id_sp 3
+>>>>>>> 2aae800c6a062ec8f60bff445117ffefd4aaa8c3:Stored Procedures/Stored Procedure For Tables/select_SP.sql
