@@ -1,4 +1,66 @@
+---report-1
+ALTER  PROC display_st_report_deprt  @id int
+AS
+BEGIN
+IF @id IN (SELECT d.dept_id FROM Department d)
+   BEGIN
+    SELECT s.st_id,s.fname,s.lname,s.st_gender,s.st_phone,s.st_birthdate,s.st_joindate,s.street , d.dept_name
+            FROM Student s INNER JOIN Department d
+			ON s.dept_id = d.dept_id
+			WHERE d.dept_id = @id
+  END
+  ELSE
+    BEGIN
+	PRINT 'Deprtment Id is not Exist'
+	END
+END
 
+display_st_report_deprt 3
+
+------------------
+---report -2
+ALTER  PROC report_st_crs @id INT
+AS
+BEGIN
+IF @id IN (SELECT s.st_id FROM Student s)
+   BEGIN
+   SELECT s.fname+' '+s.lname AS FullName ,sc.grade,c.course_name
+   FROM Student s INNER JOIN Student_course sc
+   ON s.st_id = sc.st_id INNER JOIN Course c ON sc.course_id = c.courses_id
+   WHERE s.st_id = @id
+   END
+ELSE
+  BEGIN
+  PRINT 'Student Id is Exist'
+  END
+END
+
+report_st_crs 3
+
+----------
+----report-3
+ALTER PROC instr_id @id INT
+AS
+BEGIN
+IF @id IN (SELECT i.insrt_id FROM Instructor i)
+    BEGIN
+      SELECT COUNT(sc.st_id) AS Student_Number, i.fname+' '+i.lname AS
+       FullName , c.course_name
+        FROM Instructor i INNER JOIN Instructor_courses ic
+        ON i.insrt_id = ic.instr_id INNER JOIN Course c 
+        ON ic.course_id = c.courses_id INNER JOIN Student_course sc
+        ON c.courses_id = sc.course_id
+		WHERE i.insrt_id = @id
+       GROUP BY i.fname,i.lname  , c.course_name
+	   
+   END
+ELSE
+   BEGIN
+   PRINT 'instructure id is exist'
+   END
+END
+
+instr_id 4
 --Report 4
 CREATE PROC get_topic_name_sp @course_id INT
 AS 
@@ -55,3 +117,6 @@ BEGIN
 END
 
 get_Question_with_Student_answer 1,5
+
+
+------------------------------
