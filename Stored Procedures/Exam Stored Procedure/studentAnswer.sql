@@ -15,4 +15,11 @@ BEGIN
 		END
 END
 
-student_answers 1,3,6,'a'
+student_answers 1,6,2,'a'
+student_answers 1,17,2,'b'
+student_answers 1,15,2,'c'
+student_answers 1,9,2,'a'
+student_answers 1,4,2,'d'
+student_answers 1,5,2,'a'
+student_answers 1,8,2,'c'
+student_answers 1,10,2,'b'

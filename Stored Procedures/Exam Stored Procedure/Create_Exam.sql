@@ -1,5 +1,3 @@
-
-
 CREATE PROC create_Exam  @crs_name VARCHAR(50) ,@t_f INT , @mcq INT 
 AS 
 BEGIN
@@ -52,10 +50,4 @@ BEGIN
 
 END
 
-create_Exam 'C++',1,1
-
-
-
-
-
-(excute create_exam 'C++',1,2)
+create_Exam 'C++',1,6

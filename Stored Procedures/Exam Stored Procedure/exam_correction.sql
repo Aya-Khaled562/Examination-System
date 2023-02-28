@@ -9,19 +9,19 @@ END
 
 GO
 
-create proc ExamCorrection_calc_std_garde_sp @std_id int,@exam_id int
-as 
-begin
-	declare  @crs_id int 
-	declare @grade int 
+CREATE PROC ExamCorrection_calc_std_garde_sp @std_id INT,@exam_id INT
+AS 
+BEGIN
+	DECLARE  @crs_id INT 
+	DECLARE @grade INT 
 
-	set @crs_id=(select top(1)courses_id
-	from Question q,Student_exams_questions e
-	WHERE q.q_id=e.qs_id and e.st_id=@std_id and e.exam_id=@exam_id)
+	SET @crs_id=(SELECT TOP(1)courses_id
+	FROM Question q,Student_exams_questions e
+	WHERE q.q_id=e.qs_id AND e.st_id=@std_id AND e.exam_id=@exam_id)
 
-	set @grade = ( select sum([grade]) from Student_exams_questions  where st_id=@std_id and exam_id=@exam_id)
-	update student_course
-	set grade=grade+@grade
+	SET @grade = ( SELECT SUM([grade]) FROM Student_exams_questions  WHERE st_id=@std_id AND exam_id=@exam_id)
+	UPDATE student_course
+	SET grade=grade+@grade
 	where [st_id]=@std_id and [course_id]=@crs_id
 
 END
@@ -53,4 +53,4 @@ BEGIN
 		PRINT 'exam for this student is already corrected'
 END
 
-correct_exam 5,1
+correct_exam 2,1
