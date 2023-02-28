@@ -106,7 +106,7 @@ END
 GO
 exam_update 1,'2022-03-10'
 -------------------------------student_exams_Questions-----------------------
-ALTER PROCEDURE st_ex_qs_update @st_id INT , @ex_id INT ,@qs_id INT, @grade INT,@answer VARCHAR(10),@is_corrected INT 
+CREATE PROCEDURE st_ex_qs_update @st_id INT , @ex_id INT ,@qs_id INT, @grade INT,@answer VARCHAR(10),@is_corrected INT 
 AS
 BEGIN
 	IF 
@@ -174,7 +174,7 @@ GO
 quetion_update 4,'Identify the scope resolution operator.','choice',2,'b',2
 GO
 --------------------------- Question_Choices ----------------
-ALTER PROCEDURE choice_update @q_id INT, @old_choice VARCHAR(30), @new_choice VARCHAR(30)
+CREATE PROCEDURE choice_update @q_id INT, @old_choice VARCHAR(30), @new_choice VARCHAR(30)
 AS 
 BEGIN
 	IF @q_id IN (SELECT q_id FROM Question_choices) AND @old_choice IN (SELECT choices FROM Question_choices)

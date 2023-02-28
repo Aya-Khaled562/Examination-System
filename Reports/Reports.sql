@@ -1,5 +1,5 @@
 ---report-1
-ALTER  PROC display_st_report_deprt  @id int
+CREATE  PROC display_st_report_deprt  @id int
 AS
 BEGIN
 IF @id IN (SELECT d.dept_id FROM Department d)
@@ -19,7 +19,7 @@ display_st_report_deprt 3
 
 ------------------
 ---report -2
-ALTER  PROC report_st_crs @id INT
+CREATE  PROC report_st_crs @id INT
 AS
 BEGIN
 IF @id IN (SELECT s.st_id FROM Student s)
@@ -39,7 +39,7 @@ report_st_crs 3
 
 ----------
 ----report-3
-ALTER PROC instr_id @id INT
+CREATE PROC instr_id @id INT
 AS
 BEGIN
 IF @id IN (SELECT i.insrt_id FROM Instructor i)

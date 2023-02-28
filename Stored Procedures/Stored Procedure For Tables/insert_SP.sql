@@ -104,8 +104,13 @@ BEGIN
 			END
 		ELSE
 		BEGIN
-			INSERT INTO student_exams_Questions(st_id,exam_id,qs_id,grade,answer,is_corrected)
-			VALUES (@st_id,@ex_id,@qs_id,@grade,@answer,@is_corrected)
+			BEGIN TRY
+				INSERT INTO student_exams_Questions(st_id,exam_id,qs_id,grade,answer,is_corrected)
+				VALUES (@st_id,@ex_id,@qs_id,@grade,@answer,@is_corrected)
+			END TRY
+			BEGIN CATCH 
+					PRINT 'Please check your data'
+			END CATCH
 		END
 		END
 	ELSE 
@@ -136,8 +141,13 @@ AS
 BEGIN
 	IF @c_id IN (SELECT courses_id FROM Course)
 		BEGIN
-			INSERT INTO Question (question,q_type,q_grade,q_answer,courses_id)
-			VALUES (@question,@q_type,@grade,@answer,@c_id)
+			BEGIN TRY
+				INSERT INTO Question (question,q_type,q_grade,q_answer,courses_id)
+				VALUES (@question,@q_type,@grade,@answer,@c_id)
+			END TRY
+			BEGIN CATCH 
+					PRINT 'Please check your data'
+			END CATCH
 		END
 	ELSE 
 		BEGIN 
@@ -149,20 +159,25 @@ insert_question 'Identify the scope resolution operator.','choice',2,'b',2
 GO
 
 ---------------------------Question Choices---------------
-CREATE PROCEDURE insert_choices @q_id INT, @choice VARCHAR(30) 
+CREATE PROCEDURE insert_choices @q_id INT, @choice VARCHAR(30) ,@choiceNum NVARCHAR(10)
 AS 
 BEGIN
 	IF @q_id IN (SELECT q_id FROM Question)
 		BEGIN
-			INSERT INTO Question_choices (q_id,choices)
-			VALUES (@q_id, @choice)
+			BEGIN TRY
+				INSERT INTO Question_choices (q_id,choices,choice_num)
+				VALUES (@q_id, @choice, @choiceNum)
+			END TRY
+			BEGIN CATCH 
+					PRINT 'Please check your data'
+			END CATCH
 		END
 	ELSE 
 		BEGIN 
 			PRINT 'Question_id you tried to enter is not exist'
 		END
 END
-
+insert_choices 2,'test', d
 GO
 ---------------------------Student--------------------------
 CREATE PROC student_insert_sp @fname VARCHAR(50) , @lname VARCHAR(50) ,@st_gender VARCHAR(3), @st_phone VARCHAR(11),
@@ -171,8 +186,14 @@ AS
 BEGIN
 	IF @dept_id  IN (SELECT dept_id FROM Department d)
 		BEGIN
-			INSERT INTO Student
-			VALUES (@fname,@lname,@st_gender,@st_phone,@st_birthdate,@st_joindate,@dept_id,@city,@street)
+			BEGIN TRY
+				INSERT INTO Student
+				VALUES (@fname,@lname,@st_gender,@st_phone,@st_birthdate,@st_joindate,@dept_id,@city,@street)
+			END TRY
+			BEGIN CATCH 
+					PRINT 'Please check your data'
+			END CATCH
+			
 		END
 	ELSE
 		BEGIN
@@ -189,8 +210,13 @@ AS
 BEGIN
 	IF @dept_manager IN (SELECT insrt_id FROM Instructor i)
 		BEGIN
-			INSERT INTO Department
-			VALUES (@dept_manager , @dept_name)
+			BEGIN TRY
+				INSERT INTO Department
+				VALUES (@dept_manager , @dept_name)
+			END TRY
+			BEGIN CATCH 
+					PRINT 'Please check your data'
+			END CATCH
 		END
 	ELSE
 		BEGIN

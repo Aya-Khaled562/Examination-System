@@ -28,7 +28,7 @@ END
 
 GO
 instructor_courses_delete_by_insId_sp 7
-ALTER PROCEDURE instructor_courses_delete_by_crsId_sp @Course_Id varchar(50)
+CREATE PROCEDURE instructor_courses_delete_by_crsId_sp @Course_Id varchar(50)
 AS
 	BEGIN
 		BEGIN TRY

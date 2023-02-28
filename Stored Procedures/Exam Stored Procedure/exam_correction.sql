@@ -27,7 +27,6 @@ begin
 END
 
 GO
-DROP PROC   get_student_answers
 CREATE PROCEDURE correct_exam @st_id INT, @exam_id INT
 AS
 BEGIN
