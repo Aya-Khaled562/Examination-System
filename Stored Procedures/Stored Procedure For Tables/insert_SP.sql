@@ -1,18 +1,15 @@
----- instructor --------------------
+-------------------------- instructor --------------------
 CREATE PROCEDURE instructor_insert_sp  @ins_fname NVARCHAR(50),@ins_lname NVARCHAR(50),@dept_id INT
 AS 
 BEGIN
-	IF @dept_id IN (SELECT  dept_id FROM Department)
-		 BEGIN
-
-				INSERT INTO Instructor (fname,lname,dept_id)
-				VALUES(@ins_fname,@ins_lname,@dept_id)
-		END
-	ELSE 
-		BEGIN
+	BEGIN TRY
+		INSERT INTO Instructor (fname,lname,dept_id)
+		VALUES(@ins_fname,@ins_lname,@dept_id)
+	END TRY
+	BEGIN CATCH 
 		PRINT 'department_id you try to enter is not exist'
-	END
-END;
+	END CATCH
+END
 
 GO
 instructor_insert_sp 'Aya','Ebrahim',2
@@ -23,16 +20,14 @@ GO
 create procedure instructor_course_insert_sp @instructor_id INT, @course_id int
 as 
 begin
-	if @course_id in (select courses_id from Course ) AND @instructor_id IN (SELECT insrt_id  FROM Instructor )
-		 begin
-				insert into Instructor_courses (instr_id,course_id)
-				values(@instructor_id , @course_id)
-		end
-	else 
-		begin
-		print 'Instructor_Id or course_Id you try to enter is not exist'
-	end
-end;
+		BEGIN TRY
+			insert into Instructor_courses (instr_id,course_id)
+			values(@instructor_id , @course_id)
+		END TRY
+		BEGIN CATCH 
+			print 'Instructor_Id or course_Id you try to enter is not exist'
+		END CATCH
+end
 
 GO
 instructor_course_insert_sp 2,3
@@ -43,15 +38,13 @@ GO
 CREATE PROC insert_courese_sp  @courses_name VARCHAR(50), @courser_durtion INT ,@topic_id INT
 AS
 BEGIN
-IF @topic_id IN (SELECT t.topic_id FROM Topic t)
-  BEGIN
+		BEGIN TRY
           INSERT INTO Course
           VALUES  (@courses_name,@courser_durtion,@topic_id)
-	 END
-ELSE 
-	BEGIN
-	 print ' course you try to enter is not exist'
-	 END
+		END TRY
+		BEGIN CATCH 
+			PRINT ' topic you try to enter is not exist'
+		END CATCH
 END
 
 GO
@@ -62,15 +55,13 @@ Go
 CREATE PROC student_Course_insert_sp @course_id INT , @st_id INT ,@grade INT
 AS
 BEGIN
-IF @course_id IN (SELECT c.courses_id FROM Course c) AND @st_id IN (SELECT s.st_id FROM Student s)
-  BEGIN
-    INSERT INTO Student_course
-	VALUES(@course_id,@st_id,@grade)
-  END
-ELSE
-   BEGIN
-   PRINT ' Student Coures you try to enter is not exist'
-   END
+	BEGIN TRY
+		INSERT INTO Student_course
+		VALUES(@course_id,@st_id,@grade)
+	END TRY
+		BEGIN CATCH 
+			   PRINT 'course or student you try to enter is not exist'
+		END CATCH
 END
 
 GO
@@ -82,8 +73,13 @@ GO
 CREATE PROCEDURE exam_insert @ex_date DATE
 AS 
 BEGIN
-	INSERT INTO Exam(ex_date) 
-	VALUES (@ex_date)
+	BEGIN TRY
+		INSERT INTO Exam(ex_date) 
+		VALUES (@ex_date)
+	END TRY
+	BEGIN CATCH 
+			PRINT 'Please check your data'
+	END CATCH
 END
 
 GO
@@ -145,7 +141,7 @@ BEGIN
 		END
 	ELSE 
 		BEGIN 
-			PRINT 'course_id you tried to enter is not exist'
+			PRINT 'course  you tried to enter is not exist'
 		END
 END
 GO
@@ -180,7 +176,7 @@ BEGIN
 		END
 	ELSE
 		BEGIN
-			PRINT 'department_id you try to enter is not exist'
+			PRINT 'department you try to enter is not exist'
 		END
 END
 
@@ -198,7 +194,7 @@ BEGIN
 		END
 	ELSE
 		BEGIN
-			PRINT 'Department_manager id that you try to enter is not exist '
+			PRINT 'Department Manager id that you try to enter is not exist '
 		END
 END
 GO

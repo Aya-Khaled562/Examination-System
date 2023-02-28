@@ -10,7 +10,7 @@ AS
 		END CATCH
 END
 
-instructor_delete_sp 1
+instructor_delete_sp 7
 GO
 
 -----------------------------------------------------------------
@@ -19,7 +19,7 @@ CREATE PROCEDURE instructor_courses_delete_by_insId_sp @Instructor_Id varchar(50
 AS
 	BEGIN
 		BEGIN TRY
-			DELETE FROM Instructor_courses WHERE insrt_id = @Instructor_Id
+			DELETE FROM Instructor_courses WHERE instr_id = @Instructor_Id
 		END TRY
 		BEGIN CATCH
 			PRINT 'You cannot delete this instructor course'
@@ -27,12 +27,12 @@ AS
 END
 
 GO
-
-CREATE PROCEDURE instructor_courses_delete_by_crsId_sp @Course_Id varchar(50)
+instructor_courses_delete_by_insId_sp 7
+ALTER PROCEDURE instructor_courses_delete_by_crsId_sp @Course_Id varchar(50)
 AS
 	BEGIN
 		BEGIN TRY
-			DELETE FROM Instructor_courses WHERE @Course_Id = @Course_Id
+			DELETE FROM Instructor_courses WHERE @Course_Id=course_Id
 		END TRY
 		BEGIN CATCH
 			PRINT 'You cannot delete this instructor course'
@@ -40,6 +40,7 @@ AS
 END
 
 GO
+instructor_courses_delete_by_crsId_sp 5
 -------------------------------------------------------------------
 ---------Courese
 CREATE PROCEDURE couress_delete_by_courese @coures_id VARCHAR(50)
@@ -53,6 +54,7 @@ AS
 		END CATCH
 END
 
+couress_delete_by_courese 3
 --Student Coures-----------
 
 CREATE PROCEDURE st_crs_delete_by_id @st_id INT
@@ -66,6 +68,7 @@ AS
 		END CATCH
 	END
 
+st_crs_delete_by_id 7
 
 CREATE PROCEDURE st_crs_delete_by_cr_id @crs_id INT
 AS
@@ -77,6 +80,8 @@ AS
 			PRINT 'You cannot delete this student course'
 		END CATCH
 	END
+
+st_crs_delete_by_cr_id 2
 
 -----------------------Exam ---------
 CREATE PROCEDURE delete_exam_by_id @exam_id INT
@@ -104,7 +109,7 @@ AS
 		END CATCH
 	END
 
-EXECUTE delete_student_exams_Questions_by_id 1, 1, 1 
+EXECUTE delete_student_exams_Questions_by_id 5, 1,3
 
 --------------Topic  -------------------
 CREATE PROCEDURE delete_topic_by_id @topic_id INT
@@ -118,7 +123,7 @@ AS
 		END CATCH
 	END
 
-EXECUTE delete_topic_by_id 15
+EXECUTE delete_topic_by_id 1
 
 
 
@@ -136,7 +141,7 @@ BEGIN
 	END CATCH
 END
 
-question_delete_by_id 10
+question_delete_by_id 5
 
 ----------------- Question Choices-----------------
 CREATE PROCEDURE choice_delete_by_id @q_id INT, @c_id INT 
@@ -150,7 +155,7 @@ BEGIN
 	END CATCH
 END
 
-choice_delete_by_id 10,50
+choice_delete_by_id 3,2
 
 
 ---------------------------Student-------------------------------
@@ -166,7 +171,7 @@ BEGIN
 
 END
 
-student_delete_sp 12
+student_delete_sp 5
 
 ----------------------------Department--------------------------
 CREATE PROC department_delete_sp  @dept_id INT
@@ -180,4 +185,4 @@ BEGIN
 	END CATCH
 END
 
-department_delete_sp 9
+department_delete_sp 3

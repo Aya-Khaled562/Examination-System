@@ -15,4 +15,4 @@ BEGIN
 		END
 END
 
-student_answers 2,2,2,'a'
+student_answers 1,3,6,'a'

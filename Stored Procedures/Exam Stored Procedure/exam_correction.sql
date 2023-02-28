@@ -27,7 +27,7 @@ begin
 END
 
 GO
-
+DROP PROC   get_student_answers
 CREATE PROCEDURE correct_exam @st_id INT, @exam_id INT
 AS
 BEGIN
@@ -54,4 +54,4 @@ BEGIN
 		PRINT 'exam for this student is already corrected'
 END
 
-correct_exam 2,1
+correct_exam 5,1

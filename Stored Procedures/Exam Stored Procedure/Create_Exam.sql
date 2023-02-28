@@ -52,7 +52,7 @@ BEGIN
 
 END
 
-create_Exam 'C++',1,2
+create_Exam 'C++',1,1
 
 
 

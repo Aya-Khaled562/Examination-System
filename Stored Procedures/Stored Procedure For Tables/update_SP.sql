@@ -16,7 +16,7 @@ as
 			print 'Department does not exist'
 	END
 GO
-instructor_update_sp 7, 'Ayaaa', 'Elhelw',1
+instructor_update_sp 5, 'Ayaaa', 'Elhelw',3
 Go
 ------------------------------Instructor Courese--------------------------
 create proc instructor_course_update_sp @instructor_id int, @course_id int
@@ -32,7 +32,7 @@ as
 			print 'this Instructor or this course does not exist'
 	END
 GO
-instructor_course_update_sp 1,2
+instructor_course_update_sp 1,4
 GO
 ----------------------------------- Courses--------------------------------------------
 create  proc course_update_sp @crs_id int, @crs_name nvarchar(50), @crs_duration int 
@@ -59,6 +59,7 @@ begin
 		END
 END
  GO
+ course_update_sp 5,'CSS',40
 ----------------------------------------Student Courese-------------------
 CREATE PROC student_course_update_sp @std_id INT, @crs_id INT, @grade INT
 AS
@@ -85,6 +86,7 @@ BEGIN
 END
 
 GO
+student_course_update_sp 8,4,50
 -------------------------------- EXAM ---------------------------
 CREATE PROCEDURE exam_update @exam_id INT , @exam_date DATE
 AS 
@@ -102,8 +104,9 @@ BEGIN
 END
 
 GO
+exam_update 1,'2022-03-10'
 -------------------------------student_exams_Questions-----------------------
-CREATE PROCEDURE st_ex_qs_update @st_id INT , @ex_id INT ,@qs_id INT, @grade INT,@answer VARCHAR(10),@is_corrected INT 
+ALTER PROCEDURE st_ex_qs_update @st_id INT , @ex_id INT ,@qs_id INT, @grade INT,@answer VARCHAR(10),@is_corrected INT 
 AS
 BEGIN
 	IF 
@@ -118,6 +121,7 @@ BEGIN
 				BEGIN
 					UPDATE  student_exams_Questions
 					SET grade =@grade , answer = @answer , is_corrected = @is_corrected
+					WHERE st_id =@st_id AND exam_id = @ex_id AND qs_id = @qs_id
 				END
 			ELSE
 			BEGIN
@@ -130,6 +134,7 @@ BEGIN
 		END
 END
 GO
+st_ex_qs_update 5,1,5,50,c,0
 -----------------------topic---------------------------
 CREATE PROCEDURE topic_update @topic_id INT , @topic_name VARCHAR(50)
 AS 
@@ -148,6 +153,7 @@ BEGIN
 END
 
 GO
+topic_update 5,'HTML'
 ------------------------------------Questions-----------
 CREATE PROCEDURE quetion_update @q_id INT, @question VARCHAR(50), @q_type VARCHAR(10), @grade INT, @answer VARCHAR(3), @c_id INT
 AS 
@@ -165,10 +171,10 @@ BEGIN
 END
 
 GO
-quetion_update 7,'Identify the scope resolution operator.','choice',2,'b',2
+quetion_update 4,'Identify the scope resolution operator.','choice',2,'b',2
 GO
 --------------------------- Question_Choices ----------------
-CREATE PROCEDURE choice_update @q_id INT, @old_choice VARCHAR(30), @new_choice VARCHAR(30)
+ALTER PROCEDURE choice_update @q_id INT, @old_choice VARCHAR(30), @new_choice VARCHAR(30)
 AS 
 BEGIN
 	IF @q_id IN (SELECT q_id FROM Question_choices) AND @old_choice IN (SELECT choices FROM Question_choices)
@@ -184,7 +190,7 @@ BEGIN
 END
 
 GO
-choice_update 7, ':', '...'
+choice_update 3, 'object-based', '...'
 GO
 
 -------------------------Student---------------------------
@@ -234,5 +240,5 @@ BEGIN
 		END
 END
 
-department_update_sp  9,'test2',3
+department_update_sp  5,'test2',3
 
