@@ -2,7 +2,12 @@
 CREATE PROCEDURE instructor_delete_sp @Ins_ID varchar(50)
 AS
 	BEGIN
-	DELETE FROM Instructor WHERE insrt_id = @Ins_ID
+		BEGIN TRY
+			DELETE FROM Instructor WHERE insrt_id = @Ins_ID
+		END TRY
+		BEGIN CATCH
+			PRINT 'You cannot delete this instructor'
+		END CATCH
 END
 
 instructor_delete_sp 1
@@ -13,7 +18,12 @@ GO
 CREATE PROCEDURE instructor_courses_delete_by_insId_sp @Instructor_Id varchar(50)
 AS
 	BEGIN
-	DELETE FROM Instructor WHERE insrt_id = @Instructor_Id
+		BEGIN TRY
+			DELETE FROM Instructor_courses WHERE insrt_id = @Instructor_Id
+		END TRY
+		BEGIN CATCH
+			PRINT 'You cannot delete this instructor course'
+		END CATCH
 END
 
 GO
@@ -21,7 +31,12 @@ GO
 CREATE PROCEDURE instructor_courses_delete_by_crsId_sp @Course_Id varchar(50)
 AS
 	BEGIN
-	DELETE FROM Instructor WHERE @Course_Id = @Course_Id
+		BEGIN TRY
+			DELETE FROM Instructor_courses WHERE @Course_Id = @Course_Id
+		END TRY
+		BEGIN CATCH
+			PRINT 'You cannot delete this instructor course'
+		END CATCH
 END
 
 GO
@@ -29,68 +44,125 @@ GO
 ---------Courese
 CREATE PROCEDURE couress_delete_by_courese @coures_id VARCHAR(50)
 AS
-BEGIN
-   DELETE FROM Course WHERE courses_id = @coures_id
+	BEGIN
+		BEGIN TRY
+			DELETE FROM Course WHERE courses_id = @coures_id
+		END TRY
+		BEGIN CATCH
+			PRINT 'You cannot delete this course'
+		END CATCH
 END
------------
---Student Coures
+
+--Student Coures-----------
 
 CREATE PROCEDURE st_crs_delete_by_id @st_id INT
 AS
-BEGIN
-   DELETE FROM Student_course WHERE st_id =@st_id
-END
+	BEGIN
+		BEGIN TRY
+			DELETE FROM Student_course WHERE st_id =@st_id
+		END TRY
+		BEGIN CATCH
+			PRINT 'You cannot delete this student course'
+		END CATCH
+	END
 
 
 CREATE PROCEDURE st_crs_delete_by_cr_id @crs_id INT
 AS
-BEGIN
-   DELETE FROM Student_course WHERE course_id = @crs_id
-END
+	BEGIN
+		BEGIN TRY
+			DELETE FROM Student_course WHERE course_id = @crs_id
+		END TRY
+		BEGIN CATCH
+			PRINT 'You cannot delete this student course'
+		END CATCH
+	END
 
------Mayar-----
+-----------------------Exam ---------
+CREATE PROCEDURE delete_exam_by_id @exam_id INT
+AS 
+	BEGIN 
+		BEGIN TRY
+			DELETE FROM Exam WHERE exam_id = @exam_id
+		END TRY
+		BEGIN CATCH
+			PRINT 'You cannot delete this exam'
+		END CATCH
+	END
+EXECUTE delete_exam_by_id 1
+
+-------------student_exams_Questions -----------------
+
+CREATE PROCEDURE delete_student_exams_Questions_by_id @st_id INT , @exam_id INT , @qs_id INT
+AS
+	BEGIN
+		BEGIN TRY
+			DELETE FROM student_exams_Questions WHERE st_id =@st_id AND exam_id = @exam_id AND qs_id =@qs_id 
+		END TRY
+		BEGIN CATCH
+			PRINT 'You cannot delete this student exam'
+		END CATCH
+	END
+
+EXECUTE delete_student_exams_Questions_by_id 1, 1, 1 
+
+--------------Topic  -------------------
+CREATE PROCEDURE delete_topic_by_id @topic_id INT
+AS 
+	BEGIN
+		BEGIN TRY
+			DELETE FROM Topic WHERE topic_id = @topic_id
+		END TRY
+		BEGIN CATCH
+			PRINT 'You cannot delete this topic'
+		END CATCH
+	END
+
+EXECUTE delete_topic_by_id 15
+
+
+
+
+--------------------Question -----------------
+
 CREATE PROCEDURE question_delete_by_id @q_id INT
 AS 
 BEGIN 
-	IF @q_id IN (SELECT q_id FROM Question)
-		BEGIN
+	BEGIN TRY
 			DELETE FROM Question WHERE q_id=@q_id
-		END
-	ELSE 
-		BEGIN
-			PRINT('The Id inserted isn't exist')
-		END
-END 
+	END TRY
+	BEGIN CATCH
+		PRINT 'You cannot delete this Question'
+	END CATCH
+END
 
 question_delete_by_id 10
 
+----------------- Question Choices-----------------
 CREATE PROCEDURE choice_delete_by_id @q_id INT, @c_id INT 
 AS 
 BEGIN
-	IF @q_id IN (SELECT q_id FROM Question) AND @c_id IN (SELECT choices Question_choices)
-		BEGIN
+	BEGIN TRY
 			DELETE FROM Question_choices WHERE q_id=@q_id AND choices=@c_id
-		END
-	ELSE
-		BEGIN
-			PRINT('The Id inserted isn't exist')
-		END
-END 
+	END TRY
+	BEGIN CATCH
+		PRINT 'You cannot delete this Question Choice'
+	END CATCH
+END
 
-<<<<<<< HEAD:delete_SP.sql
 choice_delete_by_id 10,50
-=======
-choice_delete_by_id 10,50 
 
 
 ---------------------------Student-------------------------------
 CREATE PROC student_delete_sp @st_id INT
 AS
 BEGIN
-	IF @st_id IN (SELECT s.st_id FROM Student s)
+	BEGIN TRY
 		DELETE FROM Student WHERE st_id = @st_id
-	ELSE
-		PRINT 'Student id that you enter is not exist'
+	END TRY
+	BEGIN CATCH
+		PRINT 'You cannot delete this student'
+	END CATCH
 
 END
 
@@ -100,12 +172,12 @@ student_delete_sp 12
 CREATE PROC department_delete_sp  @dept_id INT
 AS
 BEGIN
-	IF @dept_id IN (SELECT d.dept_id FROM Department d)
+	BEGIN TRY
 		DELETE FROM Department WHERE dept_id = @dept_id
-	ELSE
-		PRINT 'Department id that you enter is not exist'
+	END TRY
+	BEGIN CATCH
+		PRINT 'You cannot delete this Deprtment'
+	END CATCH
 END
 
 department_delete_sp 9
-
->>>>>>> 2aae800c6a062ec8f60bff445117ffefd4aaa8c3:Stored Procedures/Stored Procedure For Tables/delete_SP.sql
