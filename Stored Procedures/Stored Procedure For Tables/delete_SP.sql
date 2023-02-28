@@ -108,4 +108,3 @@ END
 
 department_delete_sp 9
 
->>>>>>> 2aae800c6a062ec8f60bff445117ffefd4aaa8c3:Stored Procedures/Stored Procedure For Tables/delete_SP.sql
